@@ -41,7 +41,7 @@ services:
       org.label-schema.group: "monitoring"
 
   caddy:
-    image: stefanprodan/caddy
+    image: stefanprodan/caddy:0.10.10
     container_name: caddy
     ports:
       - "3000:3000"
