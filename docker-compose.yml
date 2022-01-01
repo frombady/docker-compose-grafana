@@ -6,6 +6,7 @@ networks:
 
 volumes:
   grafana_data: {}
+  prometheus_data: {}
 
 services:
   grafana:
@@ -20,6 +21,20 @@ services:
     restart: unless-stopped
     expose:
       - 3000
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
+
+  prometheus:
+    image: prom/prometheus:v2.31.2
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    restart: unless-stopped
+    expose:
+      - 9090
     networks:
       - monitor-net
     labels:

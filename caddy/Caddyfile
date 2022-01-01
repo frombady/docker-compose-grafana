@@ -7,3 +7,12 @@
     errors stderr
     tls off
 }
+
+:9090 {
+    proxy / prometheus:9090 {
+            transparent
+        }
+
+    errors stderr
+    tls off
+}
